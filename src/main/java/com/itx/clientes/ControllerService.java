@@ -66,7 +66,7 @@ public class ControllerService {
        response.setHeader(HttpHeaders.CONTENT_DISPOSITION,
              "attachment; filename=\"" + filename + "\"");
       
- /*	  BulkContacts cont = new BulkContacts(clienteID, clienteSecret);
+ 	  BulkContacts cont = new BulkContacts(clienteID, clienteSecret);
  	  ArrayList<ClienteExport> clientes = cont.scanContacts(typeContact, 50);
       // create a csv writer/*
  	 HeaderColumnNameMappingStrategy<ClienteExport> strategy = new HeaderColumnNameMappingStrategy<>();
@@ -99,8 +99,7 @@ public class ControllerService {
     	//  }
     	  writer.write(clientes);
     		  
-      }
-   */   
+      }   
     } 
     
     @RequestMapping(value = "/api1/upload-csv", method = RequestMethod.POST)
@@ -160,15 +159,15 @@ public class ControllerService {
     			cont.setMaxContactosToProcess(99999);
     			if (operacion.equalsIgnoreCase("add")) {
     				cont.setEsquema(typeContact);
-    				//cont.createContact();
+    				cont.createContact();
     			}
     			else if (operacion.equalsIgnoreCase("mod")) {
     				cont.setEsquema(typeContact);
-    				//cont.updateContact();
+    				cont.updateContact();
     			}
     			else {
     				cont.setMaxContactosToProcess(48);
-    				//cont.deleteContact();
+    				cont.deleteContact();
     			}
     		}
             catch (Exception  e) {
