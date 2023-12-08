@@ -65,7 +65,7 @@ public class ControllerService {
        response.setContentType("text/csv");
        response.setHeader(HttpHeaders.CONTENT_DISPOSITION,
              "attachment; filename=\"" + filename + "\"");
-      
+      System.out.println("Empezamos aqui ");
  	  BulkContacts cont = new BulkContacts(clienteID, clienteSecret);
  	  ArrayList<ClienteExport> clientes = cont.scanContacts(typeContact, 50);
       // create a csv writer/*
@@ -76,6 +76,7 @@ public class ControllerService {
     	        .filter(Objects::nonNull)
     	        .map(CsvBindByName::column)
     	        .collect(Collectors.joining(","));
+     System.out.println("Empezamos aqui 2");
      try (StringReader reader = new StringReader(headerLine)) {
          CsvToBean<ClienteExport> csv = new CsvToBeanBuilder<ClienteExport>(reader)
                  .withType(ClienteExport.class)
@@ -83,6 +84,7 @@ public class ControllerService {
                  .build();
          for (ClienteExport csvCli : csv) {}
      }
+     System.out.println("Empezamos aqui 3");
  	  StatefulBeanToCsv<ClienteExport> writer = 
             new StatefulBeanToCsvBuilder<ClienteExport>
                  (response.getWriter())
@@ -91,7 +93,7 @@ public class ControllerService {
                    .withMappingStrategy(strategy) 
             .withOrderedResults(false).build();
       
-
+ 	 System.out.println("Empezamos aqui 4");
       if ((clientes != null) && (clientes.size() > 0)){
     	  System.out.println(clientes.get(0).getIDGenesys());
     	 // for (int i= 0; i < clientes.size(); i++) {
@@ -99,7 +101,8 @@ public class ControllerService {
     	//  }
     	  writer.write(clientes);
     		  
-      }   
+      } 
+      System.out.println("Empezamos aqui 5");
     } 
     
     @RequestMapping(value = "/api1/upload-csv", method = RequestMethod.POST)
