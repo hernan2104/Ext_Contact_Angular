@@ -67,6 +67,7 @@ public class ControllerService {
              "attachment; filename=\"" + filename + "\"");
       System.out.println("Empezamos aqui ");
  	  BulkContacts cont = new BulkContacts(clienteID, clienteSecret);
+ 	 System.out.println("Empezamos aqui 9");
  	  ArrayList<ClienteExport> clientes = cont.scanContacts(typeContact, 50);
       // create a csv writer/*
  	 HeaderColumnNameMappingStrategy<ClienteExport> strategy = new HeaderColumnNameMappingStrategy<>();
